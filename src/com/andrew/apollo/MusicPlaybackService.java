@@ -730,7 +730,7 @@ public class MusicPlaybackService extends Service {
             pause();
             mPausedByTransientLossOfFocus = false;
             seek(0);
-            killNotification();
+            mNotificationHelper.killNotification();
         } else if (REPEAT_ACTION.equals(action)) {
             cycleRepeat();
         } else if (SHUFFLE_ACTION.equals(action)) {
