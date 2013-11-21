@@ -151,6 +151,8 @@ public class AudioPlayerActivity extends FragmentActivity implements ServiceConn
 
     private long mLastSeekEventTime;
 
+    private long mLastShortSeekEventTime;
+
     private boolean mIsPaused = false;
 
     private boolean mFromTouch = false;
@@ -241,12 +243,17 @@ public class AudioPlayerActivity extends FragmentActivity implements ServiceConn
         final long now = SystemClock.elapsedRealtime();
         if (now - mLastSeekEventTime > 250) {
             mLastSeekEventTime = now;
+            mLastShortSeekEventTime = now;
             mPosOverride = MusicUtils.duration() * progress / 1000;
             MusicUtils.seek(mPosOverride);
             if (!mFromTouch) {
                 // refreshCurrentTime();
                 mPosOverride = -1;
             }
+        } else if (now - mLastShortSeekEventTime > 5) {
+            mLastShortSeekEventTime = now;
+            mPosOverride = MusicUtils.duration() * progress / 1000;
+            refreshCurrentTimeText(mPosOverride);
         }
     }
 
@@ -257,6 +264,7 @@ public class AudioPlayerActivity extends FragmentActivity implements ServiceConn
     public void onStartTrackingTouch(final SeekBar bar) {
         mLastSeekEventTime = 0;
         mFromTouch = true;
+        mCurrentTime.setVisibility(View.VISIBLE);
     }
 
     /**
@@ -264,6 +272,9 @@ public class AudioPlayerActivity extends FragmentActivity implements ServiceConn
      */
     @Override
     public void onStopTrackingTouch(final SeekBar bar) {
+        if (mPosOverride != -1) {
+            MusicUtils.seek(mPosOverride);
+        }
         mPosOverride = -1;
         mFromTouch = false;
     }
@@ -703,6 +714,10 @@ public class AudioPlayerActivity extends FragmentActivity implements ServiceConn
         }
     }
 
+    private void refreshCurrentTimeText(final long pos) {
+        mCurrentTime.setText(MusicUtils.makeTimeString(this, pos / 1000));
+    }
+
     /* Used to update the current time string */
     private long refreshCurrentTime() {
         if (mService == null) {
@@ -711,11 +726,13 @@ public class AudioPlayerActivity extends FragmentActivity implements ServiceConn
         try {
             final long pos = mPosOverride < 0 ? MusicUtils.position() : mPosOverride;
             if (pos >= 0 && MusicUtils.duration() > 0) {
-                mCurrentTime.setText(MusicUtils.makeTimeString(this, pos / 1000));
+                refreshCurrentTimeText(pos);
                 final int progress = (int)(1000 * pos / MusicUtils.duration());
                 mProgress.setProgress(progress);
 
-                if (MusicUtils.isPlaying()) {
+                if (mFromTouch) {
+                    return 500;
+                } else if (MusicUtils.isPlaying()) {
                     mCurrentTime.setVisibility(View.VISIBLE);
                 } else {
                     // blink the counter
