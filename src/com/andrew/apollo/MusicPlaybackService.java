@@ -689,6 +689,9 @@ public class MusicPlaybackService extends Service {
         // remove any pending alarms
         mAlarmManager.cancel(mShutdownIntent);
 
+        // Remove all pending messages before kill the player
+        mPlayerHandler.removeCallbacksAndMessages(null);
+
         // Release the player
         mPlayer.release();
         mPlayer = null;
@@ -1098,7 +1101,7 @@ public class MusicPlaybackService extends Service {
 
             updateCursor(mPlayList[mPlayPos]);
             while (true) {
-                if (mCursor != null
+                if (mCursor != null && !mCursor.isClosed()
                         && openFile(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI + "/"
                                 + mCursor.getLong(IDCOLIDX))) {
                     break;
