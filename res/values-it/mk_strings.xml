@@ -15,10 +15,10 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="menu_sleep_mode">Uyku Zamanlayıcısı</string>
-  <string name="cancel_sleep_mode">Uyku Zamanlayıcısı iptal et</string>
-  <string name="select_quit_time">Zamanlayıcıyı oynatıcıyı durdurmak için ayarla( dakika)</string>
-  <string name="quit_warining">Oynatıcı %1$s dakika çaldıktan sonra duracak</string>
-  <string name="settings_modversion_title">Mod sürüm adı</string>
+  <string name="menu_sleep_mode">Timer spegnimento</string>
+  <string name="cancel_sleep_mode">Annulla Timer di spegnimento</string>
+  <string name="select_quit_time">Impostare il timer per fermare la riproduzione musicale (in minuti)</string>
+  <string name="quit_warining">La riproduzione musicale si interrompera\' fra %1$s minuto(minuti)</string>
+  <string name="settings_modversion_title">nome della versione</string>
   <string name="settings_mokeeopensource_title">MoKee OpenSource</string>
 </resources>
