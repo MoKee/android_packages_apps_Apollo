@@ -17,6 +17,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="menu_sleep_mode">Таймер сну</string>
   <string name="cancel_sleep_mode">Скасувати таймер сну</string>
+  <string name="select_quit_time">Встановити таймер для плеєра (у хв.)</string>
   <string name="quit_warining">Плеєр зупититься за %1$s хв</string>
   <string name="settings_modversion_title">Версія Модифікації</string>
   <string name="settings_mokeeopensource_title">MoKee OpenSource</string>
