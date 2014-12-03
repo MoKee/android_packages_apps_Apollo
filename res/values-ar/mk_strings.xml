@@ -15,10 +15,9 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="menu_sleep_mode">Temporizador</string>
-  <string name="cancel_sleep_mode">Cancelar o temporizador</string>
-  <string name="select_quit_time">Ajuste o temporizador para parar o leitor (em minutos)</string>
-  <string name="quit_warining">O reprodutor vai parar em  %1$s minuto(s)</string>
-  <string name="settings_modversion_title">Nome da versão mod</string>
-  <string name="settings_mokeeopensource_title">MoKee OpenSource</string>
+  <string name="menu_sleep_mode">مؤقت النوم</string>
+  <string name="cancel_sleep_mode">الغاء مؤقت النوم</string>
+  <string name="select_quit_time">وضع مؤقت لإيقاف (player) في الدقيقة</string>
+  <string name="quit_warining">سيتم ايقاف (player) بعد %1$s دقيقة</string>
+  <string name="settings_mokeeopensource_title">موكي OpenSource</string>
 </resources>
